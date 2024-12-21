@@ -71,15 +71,7 @@ export const Hero = () => {
         transition={{ delay: 0.4 }}
         className="flex flex-wrap justify-center gap-4 md:gap-6"
       >
-        <button className="relative group">
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl md:rounded-2xl blur opacity-70 group-hover:opacity-100 transition"></div>
-          <span className="relative block bg-slate-900 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl tracking-tight text-sm md:text-base">
-            Получить питч-дек
-          </span>
-        </button>
-        <button className="px-6 md:px-8 py-3 md:py-4 rounded-xl md:rounded-2xl border border-purple-500/20 hover:border-purple-500/40 transition-colors tracking-tight text-sm md:text-base">
-          Демо платформы
-        </button>
+       
       </motion.div>
 
       {/* Bottom Scroll Indicator */}
