@@ -20,7 +20,7 @@ export const Hero = () => {
           <span className="text-sm md:text-base text-purple-400 tracking-tight">
             SEED ROUND • 
             <span className="text-purple-300 group-hover:text-purple-200 transition-colors ml-1">
-              $500K - $1.5M
+              $100K - $5M
             </span>
           </span>
         </div>
