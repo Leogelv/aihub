@@ -115,12 +115,7 @@ export const AIServices = () => {
         transition={{ delay: 0.8 }}
         className="text-center mt-12"
       >
-        <p className="text-gray-400 mb-4">
-          Нужен другой сервис? Мы постоянно добавляем новые интеграции
-        </p>
-        <button className="px-6 py-2 rounded-full border border-purple-500/20 hover:border-purple-500/40 transition-colors text-sm">
-          Запросить интеграцию
-        </button>
+      
       </motion.div>
     </section>
   );
