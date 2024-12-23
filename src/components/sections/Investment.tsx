@@ -1,123 +1,182 @@
 "use client";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
-const investmentData = {
-  amount: "10M ₽",
-  distribution: [
-    { label: "Разработка платформы", value: "40%", color: "from-blue-500 to-purple-500" },
-    { label: "Маркетинг и привлечение", value: "35%", color: "from-purple-500 to-pink-500" },
-    { label: "Операционные расходы", value: "25%", color: "from-pink-500 to-red-500" }
-  ],
-  roi: [
-    { label: "Возврат инвестиций", value: "24-36 мес" },
-    { label: "Целевая оценка", value: "300-400M ₽" },
-    { label: "Доля инвестора", value: "15-20%" }
-  ],
-  metrics: [
-    { label: "Retention Rate", value: "80%+", description: "на 3 месяц" },
-    { label: "Churn Rate", value: "<5%", description: "в месяц" },
-    { label: "NPS", value: "50+", description: "индекс лояльности" }
-  ]
+const financialModel = {
+  investment: {
+    seed: "20 млн ₽",
+    round_a: "100 млн ₽",
+    marketing: "2 млн ₽ (первый месяц)"
+  },
+  metrics: {
+    cac: "от 990₽",
+    ltv: "от 12,000₽",
+    margin: "80%",
+    payback: "3-4 месяца"
+  },
+  projections: {
+    year1: {
+      revenue: "150+ млн ₽",
+      users: "10,000+",
+      margin: "70%"
+    },
+    year2: {
+      revenue: "500+ млн ₽",
+      users: "50,000+",
+      margin: "75%"
+    },
+    year3: {
+      revenue: "1.5+ млрд ₽",
+      users: "200,000+",
+      margin: "80%"
+    }
+  }
 };
 
 export const Investment = () => {
+  const [showStrategy, setShowStrategy] = useState(false);
+
   return (
-    <section className="mb-24 px-4 md:px-6">
+    <section className="mb-24">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="text-center mb-8 md:mb-16"
+        className="text-center mb-16"
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2 md:mb-4">
-          Инвестиционная возможность
+        <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-400 mb-4">
+          Инвестиционная привлекательность
         </h2>
-        <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto">
-          Первый раунд для быстрого захвата рынка и масштабирования платформы
+        <p className="text-gray-400 max-w-2xl mx-auto">
+          Прозрачная финансовая модель • Быстрый возврат инвестиций • Масштабируемый бизнес
         </p>
       </motion.div>
 
-      {/* Investment Amount */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-12"
-      >
-        <div className="inline-block relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl blur-lg group-hover:blur transition-all"></div>
-          <div className="relative px-8 py-4 bg-slate-900/50 backdrop-blur-xl rounded-2xl border border-purple-500/20 group-hover:border-purple-500/40 transition-colors">
-            <div className="text-4xl md:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-              {investmentData.amount}
-            </div>
-            <div className="text-sm text-gray-400">Сумма инвестиций</div>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Distribution */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-12">
-        {investmentData.distribution.map((item, index) => (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 * index }}
-            className="relative group"
-          >
-            <div className={`absolute -inset-0.5 bg-gradient-to-r ${item.color} rounded-xl md:rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000`}></div>
-            <div className="relative h-full p-4 md:p-6 bg-slate-900/90 backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/10">
-              <div className="text-2xl md:text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-                {item.value}
-              </div>
-              <div className="text-sm text-gray-400">{item.label}</div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* ROI & Metrics */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* ROI */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-16">
+        {/* Раунды */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="relative group"
+          className="p-6 bg-slate-900/90 rounded-2xl border border-green-500/20"
         >
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl md:rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-          <div className="relative p-6 bg-slate-900/90 backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/10">
-            <h3 className="text-lg md:text-xl font-semibold text-white mb-4">ROI для инвестора</h3>
-            <div className="space-y-4">
-              {investmentData.roi.map((item, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <div className="text-sm text-gray-400">{item.label}</div>
-                  <div className="text-sm md:text-base font-medium text-white">{item.value}</div>
-                </div>
-              ))}
+          <h3 className="text-2xl font-bold text-white mb-6">Инвестиционные раунды</h3>
+          
+          <div className="space-y-6">
+            <div>
+              <h4 className="text-lg font-semibold text-green-400 mb-2">Seed Round</h4>
+              <p className="text-gray-300">Сумма: {financialModel.investment.seed}</p>
+              <ul className="mt-2 space-y-1 text-gray-400">
+                <li>• MVP и запуск базовых сервисов</li>
+                <li>• Маркетинг и привлечение первых клиентов</li>
+                <li>• Формирование core-команды</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-green-400 mb-2">Round A (2024)</h4>
+              <p className="text-gray-300">Сумма: {financialModel.investment.round_a}</p>
+              <ul className="mt-2 space-y-1 text-gray-400">
+                <li>• Масштабирование продукта</li>
+                <li>• Выход на международные рынки</li>
+                <li>• R&D и новые технологии</li>
+              </ul>
             </div>
           </div>
         </motion.div>
 
-        {/* Metrics */}
+        {/* Метрики */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="relative group"
+          className="p-6 bg-slate-900/90 rounded-2xl border border-green-500/20"
         >
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl md:rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
-          <div className="relative p-6 bg-slate-900/90 backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/10">
-            <h3 className="text-lg md:text-xl font-semibold text-white mb-4">Ключевые метрики успеха</h3>
+          <h3 className="text-2xl font-bold text-white mb-6">Ключевые метрики</h3>
+          
+          <div className="grid grid-cols-2 gap-6">
+            <div>
+              <p className="text-gray-400">CAC</p>
+              <p className="text-2xl font-bold text-green-400">{financialModel.metrics.cac}</p>
+            </div>
+            <div>
+              <p className="text-gray-400">LTV</p>
+              <p className="text-2xl font-bold text-green-400">{financialModel.metrics.ltv}</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Маржинальность</p>
+              <p className="text-2xl font-bold text-green-400">{financialModel.metrics.margin}</p>
+            </div>
+            <div>
+              <p className="text-gray-400">Окупаемость</p>
+              <p className="text-2xl font-bold text-green-400">{financialModel.metrics.payback}</p>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <h4 className="text-lg font-semibold text-white mb-4">Прогноз роста</h4>
             <div className="space-y-4">
-              {investmentData.metrics.map((item, index) => (
-                <div key={index} className="flex justify-between items-center">
-                  <div className="text-sm text-gray-400">{item.label}</div>
-                  <div className="flex items-center gap-2">
-                    <div className="text-sm md:text-base font-medium text-white">{item.value}</div>
-                    <div className="text-xs text-gray-500">({item.description})</div>
-                  </div>
-                </div>
-              ))}
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400">2024</span>
+                <span className="text-green-400 font-bold">{financialModel.projections.year1.revenue}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400">2025</span>
+                <span className="text-green-400 font-bold">{financialModel.projections.year2.revenue}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400">2026</span>
+                <span className="text-green-400 font-bold">{financialModel.projections.year3.revenue}</span>
+              </div>
             </div>
           </div>
         </motion.div>
+      </div>
+
+      {/* Стратегия запуска */}
+      <div className="text-center">
+        <button
+          onClick={() => setShowStrategy(!showStrategy)}
+          className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-all"
+        >
+          {showStrategy ? "Скрыть стратегию" : "Показать стратегию запуска"}
+        </button>
+
+        {showStrategy && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-8 p-6 bg-slate-900/90 rounded-2xl border border-purple-500/20 max-w-4xl mx-auto text-left"
+          >
+            <h3 className="text-2xl font-bold text-white mb-4">Стратегия быстрого запуска</h3>
+            
+            <div className="space-y-4">
+              <div className="bg-slate-800/50 p-4 rounded-xl">
+                <h4 className="text-lg font-semibold text-purple-400 mb-2">Этап 1: MVP (1-2 месяца)</h4>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• Интеграция топовых API (Midjourney, ChatGPT, Stable Diffusion)</li>
+                  <li>• Разработка удобного UI/UX</li>
+                  <li>• Базовая автоматизация процессов</li>
+                </ul>
+              </div>
+
+              <div className="bg-slate-800/50 p-4 rounded-xl">
+                <h4 className="text-lg font-semibold text-purple-400 mb-2">Этап 2: Маркетинг (2-3 месяца)</h4>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• Вложение {financialModel.investment.marketing} в таргет</li>
+                  <li>• Партнёрства с блогерами и инфлюенсерами</li>
+                  <li>• PR в профильных СМИ</li>
+                </ul>
+              </div>
+
+              <div className="bg-slate-800/50 p-4 rounded-xl">
+                <h4 className="text-lg font-semibold text-purple-400 mb-2">Этап 3: Рост (3-6 месяцев)</h4>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• Оптимизация юнит-экономики</li>
+                  <li>• Расширение функционала</li>
+                  <li>• Запуск корпоративных решений</li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -11,6 +11,7 @@ import { CompetitiveAnalysis } from "@/components/sections/CompetitiveAnalysis";
 import { Investment } from "@/components/sections/Investment";
 import { WhyNow } from "@/components/sections/WhyNow";
 import { MarketingStrategy } from "@/components/sections/MarketingStrategy";
+import { FutureVision } from "@/components/sections/FutureVision";
 
 import { BackgroundEffects } from "@/components/BackgroundEffects";
 
@@ -32,6 +33,7 @@ export default function Home() {
           <MarketingStrategy />
           <Investment />
           <WhyNow />
+          <FutureVision />
 
         </div>
       </div>
